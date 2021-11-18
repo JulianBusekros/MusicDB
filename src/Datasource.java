@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Data {
+public class Datasource {
 
     public static final String CONNECTION_STRING = "jdbc:sqlite:/Users/jbusekros/IdeaProjects/demo/MusicDB/music.db";
 
@@ -72,21 +72,39 @@ public class Data {
         }
     }
 
-    public List<Albums> queryAlbums(){
+    public List<Albums> queryAlbums() {
         String sql = "SELECT * FROM albums";
 
-        try(Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery(sql)){
+        try (Statement statement = connection.createStatement();
+             ResultSet results = statement.executeQuery(sql)) {
 
             List<Albums> albums = new ArrayList<>();
 
-            while(results.next()){
+            while (results.next()) {
                 Albums album = new Albums();
                 album.setId(results.getInt("_id"));
                 album.setName(results.getString("name"));
                 album.setArtistID(results.getInt("artist"));
                 albums.add(album);
             }
+            return albums;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public List<String> queryAlbumsForArtists(String artistName){
+        String sql = ("SELECT albums.name FROM albums INNER JOIN artists ON albums.artist = artists._id WHERE artists.name = '" + artistName + "'");
+
+        try (Statement statement = connection.createStatement();
+             ResultSet results = statement.executeQuery(sql)){
+
+            List<String> albums = new ArrayList<>();
+            while(results.next()){
+                albums.add(results.getString(1));
+            }
+
             return albums;
         } catch(SQLException e){
             System.out.println(e.getMessage());
