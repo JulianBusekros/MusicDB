@@ -95,7 +95,7 @@ public class Datasource {
     }
 
     public List<String> queryAlbumsForArtists(String artistName){
-        String sql = ("SELECT albums.name FROM albums INNER JOIN artists ON albums.artist = artists._id WHERE artists.name = '" + artistName + "'");
+        String sql = "SELECT albums.name FROM albums INNER JOIN artists ON albums.artist = artists._id WHERE artists.name = '" + artistName + "'";
 
         try (Statement statement = connection.createStatement();
              ResultSet results = statement.executeQuery(sql)){
@@ -110,5 +110,24 @@ public class Datasource {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    public List<String> querySongsForAlbum(String albumName){
+        String sql = "SELECT songs.title FROM songs INNER JOIN albums ON songs.album = albums._id WHERE albums.name = '" + albumName + "'";
+
+        try (Statement statement = connection.createStatement();
+             ResultSet results = statement.executeQuery(sql)){
+
+            List<String> songs = new ArrayList<>();
+            while(results.next()){
+                songs.add(results.getString(1));
+            }
+
+            return songs;
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+
     }
 }

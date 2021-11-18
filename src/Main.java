@@ -9,6 +9,7 @@ public class Main {
         printingDataFromDatasource.printAlbums();
         printingDataFromDatasource.printSongs();
         printingDataFromDatasource.printAlbumsForArtist("Pixies");
+        printingDataFromDatasource.printSongsForAlbum("Doolittle");
 
     }
 }
