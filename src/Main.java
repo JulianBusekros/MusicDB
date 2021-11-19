@@ -13,7 +13,7 @@ public class Main {
         printingDataFromDatasource.printAlbumForSong("Hey");
         printingDataFromDatasource.printSongsForArtist("Pixies");
         printingDataFromDatasource.printArtistForAlbum("Doolittle");
-        printingDataFromDatasource.printArtistsBySearch("Metal");
+        printingDataFromDatasource.printArtistsBySearch("Met");
 
     }
 }
