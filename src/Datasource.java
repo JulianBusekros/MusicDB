@@ -113,8 +113,8 @@ public class Datasource {
     }
 
     public List<String> querySongsForAlbum(String albumName){
-        String sql = "SELECT songs.title, songs.track FROM songs INNER JOIN albums ON songs.album = albums._id WHERE albums.name = '" + albumName + "' ORDER BY songs.track";
 
+        String sql = "SELECT songs.title, songs.track FROM songs INNER JOIN albums ON songs.album = albums._id WHERE albums.name = '" + albumName + "' ORDER BY songs.track";
         try (Statement statement = connection.createStatement();
              ResultSet results = statement.executeQuery(sql)){
 
@@ -205,5 +205,4 @@ public class Datasource {
             return null;
         }
     }
-
 }
