@@ -10,6 +10,10 @@ public class Main {
         printingDataFromDatasource.printSongs();
         printingDataFromDatasource.printAlbumsForArtist("Pixies");
         printingDataFromDatasource.printSongsForAlbum("Doolittle");
+        printingDataFromDatasource.printAlbumForSong("Hey");
+        printingDataFromDatasource.printSongsForArtist("Pixies");
+        printingDataFromDatasource.printArtistForAlbum("Doolittle");
+        printingDataFromDatasource.printArtistsBySearch("Met");
 
     }
 }
